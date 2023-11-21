@@ -1,0 +1,20 @@
+body {
+  display: flex;
+}
+
+main {
+  flex-grow: 1;
+}
+
+aside {
+  flex-grow: 1;
+}
+
+ul {
+  background-color: red;
+}
+
+.todo.htmx-added {
+  top: 0px !important;
+}
+
