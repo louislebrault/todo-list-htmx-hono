@@ -16,6 +16,17 @@ const todoRepository: TodoRepository = {
   },
   getAll: () => {
     return Promise.resolve(todos)
+  },
+  delete: (id) => {
+    const index = todos.findIndex(todo => todo.id === id)
+
+    if (index !== -1) {
+      todos.splice(index, 1)
+    }
+
+    console.log('todos', todos)
+
+    return Promise.resolve(true)
   }
 }
 

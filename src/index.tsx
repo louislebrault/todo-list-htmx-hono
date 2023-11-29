@@ -51,6 +51,10 @@ const TodoItem = (props) => (<>
   >
     {props.title}
   </li>
+  <form hx-post="/todo/delete" hx-target={`#${props.id}`}>
+    <input type="hidden" name="id" value={props.id} />
+    <button>Delete</button>
+  </form>
   <div id="next" />
 </>)
 
@@ -78,6 +82,14 @@ app.post('/todo/add', async (c) => {
   const todo = await addATodo(todoForm)
 
   return c.html(<TodoItem {...todo} />)
+})
+
+app.post('/todo/delete', async (c) => {
+  const body = await c.req.parseBody()
+
+  await todoRepository.delete(body.id)
+
+  return c.html('')
 })
 
 export default app
